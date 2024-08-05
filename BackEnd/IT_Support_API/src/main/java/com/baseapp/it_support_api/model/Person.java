@@ -9,6 +9,7 @@ public class Person {
     private String lastname;
     private String username;
     private String email;
+    private String password;
     @Embedded
     private Adresse adresse;
 }
