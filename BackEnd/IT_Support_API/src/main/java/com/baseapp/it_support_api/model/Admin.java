@@ -9,6 +9,4 @@ public class Admin extends Person {
     @Id
     @GeneratedValue
     private Long id;
-
-
 }

@@ -1,17 +1,18 @@
 package com.baseapp.it_support_api.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User extends Person {
-
     @Id
     @GeneratedValue
     private Long id;
-
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Equipment> equipments;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Ticket> tickets;
 }

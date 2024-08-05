@@ -1,8 +1,8 @@
 package com.baseapp.it_support_api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Technician extends Person {
@@ -10,4 +10,6 @@ public class Technician extends Person {
     @Id
     @GeneratedValue
     private Long id;
+    @OneToMany(mappedBy = "technician",cascade = CascadeType.ALL)
+    private List<Ticket> tickets;
 }

@@ -1,8 +1,7 @@
 package com.baseapp.it_support_api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.baseapp.it_support_api.model.Enum.TicketStatus;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -13,5 +12,13 @@ public class Ticket {
     private Long id;
     private LocalDate creationDate;
     private String description;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private TicketStatus status;
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "technician_id",nullable = false)
+    private Technician technician;
 }

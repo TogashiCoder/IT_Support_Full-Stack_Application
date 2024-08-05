@@ -1,10 +1,9 @@
 package com.baseapp.it_support_api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Equipment {
@@ -16,4 +15,9 @@ public class Equipment {
     private LocalDate purchaseDate;
     private String assetValue;
     private String serialNumber;
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
+    @OneToMany(mappedBy = "equipment",cascade = CascadeType.ALL)
+    private List<Fault> faults;
 }
