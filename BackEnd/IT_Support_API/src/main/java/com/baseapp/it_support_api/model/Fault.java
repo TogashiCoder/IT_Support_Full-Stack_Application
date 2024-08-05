@@ -2,9 +2,16 @@ package com.baseapp.it_support_api.model;
 
 import com.baseapp.it_support_api.model.Enum.FaultStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Fault {
     @Id
