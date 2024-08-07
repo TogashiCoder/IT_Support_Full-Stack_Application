@@ -1,5 +1,6 @@
 package com.baseapp.it_support_api.model;
 
+import com.baseapp.it_support_api.model.mapper.History;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,4 +27,6 @@ public class Equipment {
     private User user;
     @OneToMany(mappedBy = "equipment",cascade = CascadeType.ALL)
     private List<Fault> faults;
+    @OneToMany(mappedBy = "equipment")
+    private List<History> histories;
 }

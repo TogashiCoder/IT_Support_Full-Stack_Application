@@ -1,18 +1,11 @@
 package com.baseapp.it_support_api.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "admins")
+@DiscriminatorValue("ADMIN")
 public class Admin extends Person {
-
-    @Id
-    @GeneratedValue
-    private Long id;
 }

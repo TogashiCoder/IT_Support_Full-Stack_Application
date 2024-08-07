@@ -2,23 +2,19 @@ package com.baseapp.it_support_api.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
+
+@Getter
+@Setter
 @Entity
-@Table(name = "users")
-public class User extends Person {
-    @Id
-    @GeneratedValue
-    private Long id;
+@DiscriminatorValue("USER")
+public class User extends Person{
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Equipment> equipments;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Ticket> tickets;
+
 }

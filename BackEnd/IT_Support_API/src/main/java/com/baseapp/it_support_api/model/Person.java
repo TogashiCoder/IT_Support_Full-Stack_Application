@@ -1,15 +1,24 @@
 package com.baseapp.it_support_api.model;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.MappedSuperclass;
+import com.baseapp.it_support_api.model.Enum.Role;
+import jakarta.persistence.*;
+import lombok.*;
 
-@MappedSuperclass
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Character")
 public class Person {
-    private String firstname;
-    private String lastname;
+    @Id
+    @GeneratedValue()
+    private Long id;
     private String username;
     private String email;
     private String password;
-    @Embedded
-    private Adresse adresse;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
