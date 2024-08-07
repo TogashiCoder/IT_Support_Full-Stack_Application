@@ -12,8 +12,8 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("USER")
 public class User extends Person{
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private List<Equipment> equipments;
+//    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+//    private List<Equipment> equipments;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 

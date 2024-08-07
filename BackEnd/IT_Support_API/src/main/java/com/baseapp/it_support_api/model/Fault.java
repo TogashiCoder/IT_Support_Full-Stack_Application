@@ -1,5 +1,6 @@
 package com.baseapp.it_support_api.model;
 
+import com.baseapp.it_support_api.model.Enum.FaultStatus;
 import com.baseapp.it_support_api.model.mapper.History;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,9 +22,11 @@ public class Fault {
     private Long id;
     private String description;
     private LocalDate SignalDate;
-    @ManyToOne
-    @JoinColumn(name = "equipment_id",nullable = false)
-    private Equipment equipment;
+    @Enumerated(EnumType.STRING)
+    private FaultStatus faultStatus;
+//    @ManyToOne
+//    @JoinColumn(name = "equipment_id",nullable = false)
+//    private Equipment equipment;
     @OneToMany(mappedBy = "fault",cascade = CascadeType.ALL)
     private List<Ticket> tickets;
     @OneToMany(mappedBy = "fault")

@@ -30,4 +30,8 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "fault_id",nullable = false)
     private Fault fault;
+
+    @ManyToOne
+    @JoinColumn(name = "equipment_id",nullable = false)
+    private Equipment equipment;
 }
