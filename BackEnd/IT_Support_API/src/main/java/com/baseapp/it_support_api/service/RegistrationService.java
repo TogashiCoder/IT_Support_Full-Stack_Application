@@ -1,56 +1,18 @@
 package com.baseapp.it_support_api.service;
 
-import com.baseapp.it_support_api.model.Admin;
-import com.baseapp.it_support_api.model.DTO.RegistrationDTO;
-import com.baseapp.it_support_api.model.Person;
-import com.baseapp.it_support_api.model.Technician;
-import com.baseapp.it_support_api.model.User;
-import com.baseapp.it_support_api.repository.PersonRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import com.baseapp.it_support_api.model.DTO.AdminDTO;
+import com.baseapp.it_support_api.model.DTO.TechnicianDTO;
+import com.baseapp.it_support_api.model.DTO.UserDTO;
 
-@Service
-@RequiredArgsConstructor
-public class RegistrationService {
+import java.util.Optional;
 
-    private final PersonRepository personRepository;
-    private final PasswordEncoder passwordEncoder;
+public interface RegistrationService {
 
-    public Person registerUser(RegistrationDTO registrationDto) {
+    Optional<UserDTO> addUser(UserDTO userDto);
 
-        Person person;
+    Optional<TechnicianDTO> addTechnician(TechnicianDTO technicianDto);
 
-        switch (registrationDto.getRole()) {
-            case TECHNICIAN:
-                person = Technician.builder()
-                        .username(registrationDto.getUsername())
-                        .email(registrationDto.getEmail())
-                        .password(passwordEncoder.encode(registrationDto.getPassword()))
-                        .role(registrationDto.getRole())
-                        .build();
-                break;
-            case ADMIN:
-                person = Admin.builder()
-                        .username(registrationDto.getUsername())
-                        .email(registrationDto.getEmail())
-                        .password(passwordEncoder.encode(registrationDto.getPassword()))
-                        .role(registrationDto.getRole())
-                        .build();
-                break;
-            case USER:
-            default:
-                person = User.builder()
-                        .username(registrationDto.getUsername())
-                        .email(registrationDto.getEmail())
-                        .password(passwordEncoder.encode(registrationDto.getPassword()))
-                        .role(registrationDto.getRole())
-                        .build();
-                break;
-        }
+    Optional<AdminDTO> registerAdmin(AdminDTO adminDTO);
 
-        return personRepository.save(person);
-    }
 
 }
-

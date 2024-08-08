@@ -1,9 +1,8 @@
-package com.baseapp.it_support_api.model;
+package com.baseapp.it_support_api.model.Entity;
 
 import com.baseapp.it_support_api.model.Enum.TicketStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

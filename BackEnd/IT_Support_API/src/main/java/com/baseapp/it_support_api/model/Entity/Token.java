@@ -1,4 +1,4 @@
-package com.baseapp.it_support_api.model;
+package com.baseapp.it_support_api.model.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

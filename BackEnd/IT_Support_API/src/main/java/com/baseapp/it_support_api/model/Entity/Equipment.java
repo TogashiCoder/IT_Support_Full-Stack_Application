@@ -1,6 +1,5 @@
-package com.baseapp.it_support_api.model;
+package com.baseapp.it_support_api.model.Entity;
 
-import com.baseapp.it_support_api.model.mapper.History;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,13 +21,6 @@ public class Equipment {
     private LocalDate purchaseDate;
     private String assetValue;
     private String serialNumber;
-//    @ManyToOne
-//    @JoinColumn(name = "user_id",nullable = false)
-//    private User user;
-//    @OneToMany(mappedBy = "equipment",cascade = CascadeType.ALL)
-//    private List<Fault> faults;
-    @OneToMany(mappedBy = "equipment")
-    private List<History> histories;
     @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 }

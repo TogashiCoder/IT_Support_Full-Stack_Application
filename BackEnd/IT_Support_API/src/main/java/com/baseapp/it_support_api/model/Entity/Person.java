@@ -1,4 +1,4 @@
-package com.baseapp.it_support_api.model;
+package com.baseapp.it_support_api.model.Entity;
 
 import com.baseapp.it_support_api.model.Enum.Role;
 import jakarta.persistence.*;
@@ -8,7 +8,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Character")

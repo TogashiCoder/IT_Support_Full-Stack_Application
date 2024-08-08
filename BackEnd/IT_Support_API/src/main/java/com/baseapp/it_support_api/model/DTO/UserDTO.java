@@ -8,14 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class UserDTO {
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long id;
-    private String username;
-    private String email;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
-    private Role role;
+public class UserDTO extends PersonDTO{
     @JsonIgnore
     private List<EquipmentDTO> equipments;
     @JsonIgnore

@@ -1,6 +1,6 @@
 package com.baseapp.it_support_api.repository;
 
-import com.baseapp.it_support_api.model.Fault;
+import com.baseapp.it_support_api.model.Entity.Fault;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

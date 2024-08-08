@@ -1,4 +1,4 @@
-package com.baseapp.it_support_api.model;
+package com.baseapp.it_support_api.model.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,8 +6,7 @@ import lombok.*;
 import java.util.List;
 
 
-@Getter
-@Setter
+@Data
 @Entity
 @DiscriminatorValue("TECHNICIAN")
 public class Technician extends Person {
