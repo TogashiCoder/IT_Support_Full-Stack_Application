@@ -59,4 +59,18 @@ public class TicketController {
         TicketDTO linkedTicket = ticketService.linkTicketWithTechnician(id, technicianId);
         return ResponseEntity.ok(linkedTicket);
     }
+
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<List<TicketDTO>> getAllTicketsByUserId(@PathVariable Long userId) {
+        List<TicketDTO> tickets = ticketService.getAllTecketByUserId(userId);
+        return ResponseEntity.ok(tickets);
+    }
+
+
+    @GetMapping("/technicians/{technicianId}")
+    public ResponseEntity<List<TicketDTO>> getAllTicketsByTechnicianId(@PathVariable Long technicianId) {
+        List<TicketDTO> tickets = ticketService.getAllTicketsByTechnicianId(technicianId);
+        return ResponseEntity.ok(tickets);
+    }
 }

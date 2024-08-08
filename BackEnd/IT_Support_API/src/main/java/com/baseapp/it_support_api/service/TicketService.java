@@ -11,4 +11,7 @@ public interface TicketService {
     TicketDTO updateTicket(Long id, TicketDTO ticketDTO);
     void deleteTicket(Long id);
     TicketDTO linkTicketWithTechnician(Long ticketId, Long technicianId);
+
+    List<TicketDTO> getAllTecketByUserId(Long userId);
+    List<TicketDTO> getAllTicketsByTechnicianId(Long technicianId);
 }

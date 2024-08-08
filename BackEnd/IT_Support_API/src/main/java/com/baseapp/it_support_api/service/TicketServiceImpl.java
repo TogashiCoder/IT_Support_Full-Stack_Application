@@ -29,13 +29,6 @@ public class TicketServiceImpl implements TicketService {
     private final PersonRepository personRepository;
 
 
-
-//    @Override
-//    public TicketDTO createTicket(TicketDTO ticketDTO) {
-//        Ticket ticket = ticketMapper.toEntity(ticketDTO);
-//        Ticket savedTicket = ticketRepository.save(ticket);
-//        return ticketMapper.toDTO(savedTicket);
-//    }
 @Override
 public TicketDTO createTicket(TicketDTO ticketDTO) {
     Ticket ticket = ticketMapper.toEntity(ticketDTO);
@@ -91,6 +84,22 @@ public TicketDTO createTicket(TicketDTO ticketDTO) {
         ticket.setTechnician((Technician) technician);
         Ticket updatedTicket = ticketRepository.save(ticket);
         return ticketMapper.toDTO(updatedTicket);
+    }
+
+    @Override
+    public List<TicketDTO> getAllTecketByUserId(Long userId) {
+        User user = (User) personRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+        List<Ticket> tickets = ticketRepository.findByUser(user);
+        return ticketMapper.toDTOList(tickets);
+    }
+
+    @Override
+    public List<TicketDTO> getAllTicketsByTechnicianId(Long technicianId) {
+        Technician technician = (Technician) personRepository.findById(technicianId)
+                .orElseThrow(() -> new TechnicianNotFoundException("Technician not found with id: " + technicianId));
+        List<Ticket> tickets = ticketRepository.findByTechnician(technician);
+        return ticketMapper.toDTOList(tickets);
     }
 
 
