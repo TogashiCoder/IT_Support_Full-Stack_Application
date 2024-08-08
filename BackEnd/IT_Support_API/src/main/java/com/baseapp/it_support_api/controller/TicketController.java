@@ -14,14 +14,18 @@ import java.util.List;
 @AllArgsConstructor
 public class TicketController {
 
-
     private final TicketService ticketService;
+
+
+
 
     @PostMapping
     public ResponseEntity<TicketDTO> createTicket(@RequestBody TicketDTO ticketDTO) {
-        TicketDTO createdTicket = ticketService.createTicket(ticketDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdTicket);
+    TicketDTO createdTicket = ticketService.createTicket(ticketDTO);
+    return ResponseEntity.status(HttpStatus.CREATED).body(createdTicket);
     }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<TicketDTO> getTicketById(@PathVariable Long id) {
@@ -47,9 +51,12 @@ public class TicketController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{ticketId}/technician/{technicianId}")
-    public ResponseEntity<TicketDTO> linkTicketWithTechnician(@PathVariable Long ticketId, @PathVariable Long technicianId) {
-        TicketDTO linkedTicket = ticketService.linkTicketWithTechnician(ticketId, technicianId);
+
+
+
+    @PutMapping("/{id}/technician/{technicianId}")
+    public ResponseEntity<TicketDTO> linkTicketWithTechnician(@PathVariable Long id, @PathVariable Long technicianId) {
+        TicketDTO linkedTicket = ticketService.linkTicketWithTechnician(id, technicianId);
         return ResponseEntity.ok(linkedTicket);
     }
 }

@@ -2,15 +2,20 @@ package com.baseapp.it_support_api.service;
 
 import com.baseapp.it_support_api.exception.TechnicianNotFoundException;
 import com.baseapp.it_support_api.exception.TicketNotFoundException;
+import com.baseapp.it_support_api.exception.UserNotFoundException;
 import com.baseapp.it_support_api.model.DTO.TicketDTO;
+import com.baseapp.it_support_api.model.Entity.Person;
 import com.baseapp.it_support_api.model.Entity.Technician;
 import com.baseapp.it_support_api.model.Entity.Ticket;
+import com.baseapp.it_support_api.model.Entity.User;
 import com.baseapp.it_support_api.model.mapper.TicketMapper;
+import com.baseapp.it_support_api.repository.PersonRepository;
 import com.baseapp.it_support_api.repository.TechnicianRepository;
 import com.baseapp.it_support_api.repository.TicketRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,15 +26,27 @@ public class TicketServiceImpl implements TicketService {
     private final TicketRepository ticketRepository;
     private final TechnicianRepository technicianRepository;
     private final TicketMapper ticketMapper;
+    private final PersonRepository personRepository;
 
 
 
-    @Override
-    public TicketDTO createTicket(TicketDTO ticketDTO) {
-        Ticket ticket = ticketMapper.toEntity(ticketDTO);
-        Ticket savedTicket = ticketRepository.save(ticket);
-        return ticketMapper.toDTO(savedTicket);
-    }
+//    @Override
+//    public TicketDTO createTicket(TicketDTO ticketDTO) {
+//        Ticket ticket = ticketMapper.toEntity(ticketDTO);
+//        Ticket savedTicket = ticketRepository.save(ticket);
+//        return ticketMapper.toDTO(savedTicket);
+//    }
+@Override
+public TicketDTO createTicket(TicketDTO ticketDTO) {
+    Ticket ticket = ticketMapper.toEntity(ticketDTO);
+    Person user = personRepository.findById(ticketDTO.getUserId())
+            .orElseThrow(() -> new UserNotFoundException("User not found"));
+    ticket.setUser((User) user);
+    Ticket savedTicket = ticketRepository.save(ticket);
+    return ticketMapper.toDTO(savedTicket);
+}
+
+
     @Override
     public TicketDTO getTicketById(Long id) {
         Ticket ticket = ticketRepository.findById(id)
@@ -63,14 +80,18 @@ public class TicketServiceImpl implements TicketService {
         ticketRepository.deleteById(id);
     }
 
+
+
     @Override
     public TicketDTO linkTicketWithTechnician(Long ticketId, Long technicianId) {
         Ticket ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new TicketNotFoundException("Ticket not found"));
-        Technician technician = technicianRepository.findById(technicianId)
+        Person technician = personRepository.findById(technicianId)
                 .orElseThrow(() -> new TechnicianNotFoundException("Technician not found"));
-        ticket.setTechnician(technician);
+        ticket.setTechnician((Technician) technician);
         Ticket updatedTicket = ticketRepository.save(ticket);
         return ticketMapper.toDTO(updatedTicket);
     }
+
+
 }

@@ -12,13 +12,13 @@ public interface TicketMapper {
 
 
     @Mapping(source = "user.id", target = "userId")
-    @Mapping(source = "technician.id", target = "technicianId")
+   // @Mapping(source = "technician.id", target = "technicianId")
     @Mapping(source = "fault.id", target = "faultId")
     @Mapping(source = "equipment.id", target = "equipmentId")
     TicketDTO toDTO(Ticket ticket);
 
     @Mapping(source = "userId", target = "user.id")
-    @Mapping(source = "technicianId", target = "technician.id")
+   // @Mapping(source = "technicianId", target = "technician.id")
     @Mapping(source = "faultId", target = "fault.id")
     @Mapping(source = "equipmentId", target = "equipment.id")
     Ticket toEntity(TicketDTO ticketDTO);

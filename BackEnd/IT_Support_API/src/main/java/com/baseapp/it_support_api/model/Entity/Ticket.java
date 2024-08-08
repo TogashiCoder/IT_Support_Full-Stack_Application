@@ -24,13 +24,12 @@ public class Ticket {
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
     @ManyToOne
-    @JoinColumn(name = "technician_id",nullable = false)
+    @JoinColumn(name = "technician_id",nullable = true)
     private Technician technician;
     @ManyToOne
-    @JoinColumn(name = "fault_id",nullable = false)
+    @JoinColumn(name = "fault_id",nullable = true)
     private Fault fault;
-
     @ManyToOne
-    @JoinColumn(name = "equipment_id",nullable = false)
+    @JoinColumn(name = "equipment_id",nullable = true)
     private Equipment equipment;
 }

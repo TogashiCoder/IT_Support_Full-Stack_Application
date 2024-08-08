@@ -15,7 +15,7 @@ public class TicketDTO {
     private String description;
     private TicketStatus status;
     private Long userId;
-    private Long technicianId;
+   // private Long technicianId;
     private Long faultId;
     private Long equipmentId;
 }
