@@ -8,6 +8,7 @@ import com.baseapp.it_support_api.repository.FaultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,7 @@ public class FaultServiceImpl {
 
     public FaultDTO createFault(FaultDTO faultDTO) {
         Fault fault = faultMapper.toEntity(faultDTO);
+        fault.setSignalDate(LocalDate.now());
         Fault savedFault = faultRepository.save(fault);
         return faultMapper.toDTO(savedFault);
     }

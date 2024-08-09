@@ -1,5 +1,6 @@
 package com.baseapp.it_support_api.service;
 
+import com.baseapp.it_support_api.exception.StatusNotFoundException;
 import com.baseapp.it_support_api.exception.TechnicianNotFoundException;
 import com.baseapp.it_support_api.exception.TicketNotFoundException;
 import com.baseapp.it_support_api.exception.UserNotFoundException;
@@ -8,6 +9,7 @@ import com.baseapp.it_support_api.model.Entity.Person;
 import com.baseapp.it_support_api.model.Entity.Technician;
 import com.baseapp.it_support_api.model.Entity.Ticket;
 import com.baseapp.it_support_api.model.Entity.User;
+import com.baseapp.it_support_api.model.Enum.TicketStatus;
 import com.baseapp.it_support_api.model.mapper.TicketMapper;
 import com.baseapp.it_support_api.repository.PersonRepository;
 import com.baseapp.it_support_api.repository.TechnicianRepository;
@@ -17,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -35,6 +38,8 @@ public TicketDTO createTicket(TicketDTO ticketDTO) {
     Person user = personRepository.findById(ticketDTO.getUserId())
             .orElseThrow(() -> new UserNotFoundException("User not found"));
     ticket.setUser((User) user);
+    ticket.setCreationDate(LocalDate.now());
+    ticket.setStatus(TicketStatus.CREATED);
     Ticket savedTicket = ticketRepository.save(ticket);
     return ticketMapper.toDTO(savedTicket);
 }
@@ -82,6 +87,7 @@ public TicketDTO createTicket(TicketDTO ticketDTO) {
         Person technician = personRepository.findById(technicianId)
                 .orElseThrow(() -> new TechnicianNotFoundException("Technician not found"));
         ticket.setTechnician((Technician) technician);
+        ticket.setStatus(TicketStatus.ASSIGNED);
         Ticket updatedTicket = ticketRepository.save(ticket);
         return ticketMapper.toDTO(updatedTicket);
     }
@@ -99,6 +105,19 @@ public TicketDTO createTicket(TicketDTO ticketDTO) {
         Technician technician = (Technician) personRepository.findById(technicianId)
                 .orElseThrow(() -> new TechnicianNotFoundException("Technician not found with id: " + technicianId));
         List<Ticket> tickets = ticketRepository.findByTechnician(technician);
+        return ticketMapper.toDTOList(tickets);
+    }
+
+    @Override
+    public List<TicketDTO> filterByStatus(String status) {
+        TicketStatus ticketStatus;
+        try {
+            ticketStatus = TicketStatus.valueOf(status.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new StatusNotFoundException("Invalid ticket status: " + status);
+        }
+
+        List<Ticket> tickets = ticketRepository.findByStatus(ticketStatus);
         return ticketMapper.toDTOList(tickets);
     }
 

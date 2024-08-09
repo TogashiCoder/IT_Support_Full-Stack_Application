@@ -1,5 +1,6 @@
 package com.baseapp.it_support_api.controller;
 
+import com.baseapp.it_support_api.exception.StatusNotFoundException;
 import com.baseapp.it_support_api.model.DTO.TicketDTO;
 import com.baseapp.it_support_api.service.TicketService;
 import lombok.AllArgsConstructor;
@@ -72,5 +73,21 @@ public class TicketController {
     public ResponseEntity<List<TicketDTO>> getAllTicketsByTechnicianId(@PathVariable Long technicianId) {
         List<TicketDTO> tickets = ticketService.getAllTicketsByTechnicianId(technicianId);
         return ResponseEntity.ok(tickets);
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<?> filterTicketsByStatus(@RequestParam String status) {
+        try {
+            List<TicketDTO> filteredTickets = ticketService.filterByStatus(status);
+            return ResponseEntity.ok(filteredTickets);
+        } catch (StatusNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An unexpected error");
+        }
     }
 }

@@ -13,6 +13,7 @@ public class FaultDTO {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     private String description;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDate signalDate;
     @JsonIgnore
     private List<Ticket> tickets;

@@ -2,13 +2,12 @@ package com.baseapp.it_support_api.model.Entity;
 
 import com.baseapp.it_support_api.model.Enum.TicketStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

@@ -14,4 +14,6 @@ public interface TicketService {
 
     List<TicketDTO> getAllTecketByUserId(Long userId);
     List<TicketDTO> getAllTicketsByTechnicianId(Long technicianId);
+
+    List<TicketDTO> filterByStatus(String status);
 }

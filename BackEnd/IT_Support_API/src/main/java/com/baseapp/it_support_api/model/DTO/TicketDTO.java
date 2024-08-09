@@ -11,6 +11,7 @@ public class TicketDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDate creationDate;
     private String description;
     private TicketStatus status;
