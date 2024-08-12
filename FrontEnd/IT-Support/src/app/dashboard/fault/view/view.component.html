@@ -1,0 +1,18 @@
+<div class="fault-card">
+  <div class="fault-details">
+    <div class="detail-row">
+      <span class="label">ID:</span>
+      <span class="value">{{ fault.id }}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="label">Description:</span>
+      <span class="value">{{ fault.description }}</span>
+    </div>
+  </div>
+  <div class="action-buttons">
+    <button (click)="editFault()">Edit</button>
+    <button (click)="deleteFault()">Delete</button>
+    <button (click)="goBack()">Back</button>
+  </div>
+</div>

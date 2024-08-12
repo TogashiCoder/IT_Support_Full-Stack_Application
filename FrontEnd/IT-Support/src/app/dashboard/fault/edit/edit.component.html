@@ -1,0 +1,13 @@
+<form [formGroup]="faultForm" (ngSubmit)="updateFault()" class="fault-form">
+  <h2>Edit Fault Details</h2>
+
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <input id="description" type="text" formControlName="description" class="form-control">
+    <div *ngIf="faultForm.get('description')?.invalid && faultForm.get('description')?.touched" class="error-message">
+      Description is required and must be at least 5 characters long.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!faultForm.valid">Update Fault</button>
+</form>

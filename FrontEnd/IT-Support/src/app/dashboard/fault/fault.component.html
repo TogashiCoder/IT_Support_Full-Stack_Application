@@ -1,0 +1,68 @@
+<div class="mat-card" style="display: flex; flex-direction: row;">
+  <mat-card class="mat-card count-card bg-primary">
+    <mat-card-title>Num of Fault</mat-card-title>
+    <mat-card-content>{{dataSource.data.length}}</mat-card-content>
+  </mat-card>
+
+  <mat-card class="mat-card count-card bg-success">
+    <mat-card-title>Num of Active Faults</mat-card-title>
+    <mat-card-content>hardcode</mat-card-content>
+  </mat-card>
+
+  <mat-card class="mat-card count-card bg-info">
+    <mat-card-title>Num of Inactive Faults</mat-card-title>
+    <mat-card-content>hardcode</mat-card-content>
+  </mat-card>
+
+  <button mat-button class="add-button" [routerLink]="['add']">Add Fault	</button>
+
+</div>
+
+<mat-card class="mat-card">
+  <mat-card-header>
+    <mat-card-title>Listing all Faults</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let element">{{element.description}}</td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="font-icone-style">
+            <a [routerLink]="['view', element.id]"><mat-icon aria-hidden="false">visibility</mat-icon></a> |
+            <a [routerLink]="['edit', element.id]"><mat-icon aria-hidden="false">edit</mat-icon></a> |
+            <a [routerLink]="['delete', element.id]"><mat-icon aria-hidden="false">delete</mat-icon></a>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+    </table>
+  </mat-card-content>
+  <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>
