@@ -1,0 +1,26 @@
+<div class="equipment-card" *ngIf="equipment">
+  <div class="equipment-image">
+    <img [src]=" 'assets/'+ equipment.imageUrl" alt="Equipment Image">
+  </div>
+  <div class="equipment-details">
+    <h2>{{equipment.equipmentName}}</h2>
+    <p class="id">ID: {{equipment.id}}</p>
+    <div class="detail-row">
+      <span class="label">Serial Number:</span>
+      <span class="value">{{equipment.serialNumber}}</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">Purchase Date:</span>
+      <span class="value">{{equipment.purchaseDate | date:'mediumDate'}}</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">Asset Value:</span>
+      <span class="value">{{equipment.assetValue | currency}}</span>
+    </div>
+  </div>
+  <div class="action-buttons">
+    <button (click)="editEquipment()">Edit</button>
+    <button (click)="deleteEquipment()">Delete</button>
+    <button (click)="goBack()">Back</button>
+  </div>
+</div>

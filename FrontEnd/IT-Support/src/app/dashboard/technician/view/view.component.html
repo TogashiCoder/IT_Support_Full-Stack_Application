@@ -1,0 +1,25 @@
+<div class="user-card">
+  <div class="user-details">
+    <div class="detail-row">
+      <span class="label">UserName:</span>
+      <span class="value">{{ technician.username }}</span>
+
+    </div>
+
+    <div class="detail-row">
+      <span class="label">Email:</span>
+      <span class="value">{{ technician.email }}</span>
+
+    </div>
+    <div class="detail-row">
+      <span class="label">Role:</span>
+      <span class="value">{{ technician.role }}</span>
+
+    </div>
+  </div>
+  <div class="action-buttons">
+    <button (click)="editUser()">Edit</button>
+    <button (click)="deleteUser()">Delete</button>
+    <button (click)="goBack()">Back</button>
+  </div>
+</div>

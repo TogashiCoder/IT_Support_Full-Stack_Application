@@ -1,0 +1,164 @@
+{
+  "equipmentList": [
+    {
+      "id": 1,
+      "imageUrl": "C:/Users/user/Desktop/images/laptop.jpg",
+      "equipmentName": "Laptop",
+      "purchaseDate": "2022-03-15",
+      "assetValue": "1500",
+      "serialNumber": "ABC123456"
+    },
+    {
+      "id": 2,
+      "imageUrl": "http://example.com/images/equipment2.jpg",
+      "equipmentName": "Projector",
+      "purchaseDate": "2021-07-22",
+      "assetValue": "800",
+      "serialNumber": "XYZ987654"
+    },
+    {
+      "id": 3,
+      "imageUrl": "http://example.com/images/equipment3.jpg",
+      "equipmentName": "Printer",
+      "purchaseDate": "2020-01-05",
+      "assetValue": "300",
+      "serialNumber": "LMN246810"
+    },
+    {
+      "id": 4,
+      "imageUrl": "http://example.com/images/equipment4.jpg",
+      "equipmentName": "Desktop Computer",
+      "purchaseDate": "2019-11-10",
+      "assetValue": "1200",
+      "serialNumber": "QRS135790"
+    },
+    {
+      "id": 5,
+      "imageUrl": "http://example.com/images/equipment5.jpg",
+      "equipmentName": "Camera",
+      "purchaseDate": "2023-06-17",
+      "assetValue": "900",
+      "serialNumber": "UVW123098"
+    },
+    {
+      "id": 6,
+      "imageUrl": "http://example.com/images/equipment6.jpg",
+      "equipmentName": "Monitor",
+      "purchaseDate": "2018-09-14",
+      "assetValue": "250",
+      "serialNumber": "JKL987654"
+    },
+    {
+      "id": 7,
+      "imageUrl": "http://example.com/images/equipment7.jpg",
+      "equipmentName": "Keyboard",
+      "purchaseDate": "2021-12-05",
+      "assetValue": "50",
+      "serialNumber": "HJK135790"
+    },
+    {
+      "id": 8,
+      "imageUrl": "http://example.com/images/equipment8.jpg",
+      "equipmentName": "Mouse",
+      "purchaseDate": "2022-01-21",
+      "assetValue": "30",
+      "serialNumber": "POI123654"
+    },
+    {
+      "id": 9,
+      "imageUrl": "http://example.com/images/equipment9.jpg",
+      "equipmentName": "Tablet",
+      "purchaseDate": "2021-04-19",
+      "assetValue": "400",
+      "serialNumber": "QWE456789"
+    },
+    {
+      "id": 10,
+      "imageUrl": "http://example.com/images/equipment10.jpg",
+      "equipmentName": "Smartphone",
+      "purchaseDate": "2020-07-11",
+      "assetValue": "700",
+      "serialNumber": "RTY246810"
+    },
+    {
+      "id": 11,
+      "imageUrl": "http://example.com/images/equipment11.jpg",
+      "equipmentName": "Router",
+      "purchaseDate": "2019-08-23",
+      "assetValue": "120",
+      "serialNumber": "ZXC567123"
+    },
+    {
+      "id": 12,
+      "imageUrl": "http://example.com/images/equipment12.jpg",
+      "equipmentName": "External Hard Drive",
+      "purchaseDate": "2020-10-02",
+      "assetValue": "100",
+      "serialNumber": "VBN234567"
+    },
+    {
+      "id": 13,
+      "imageUrl": "http://example.com/images/equipment13.jpg",
+      "equipmentName": "Scanner",
+      "purchaseDate": "2022-05-30",
+      "assetValue": "150",
+      "serialNumber": "ASD789456"
+    },
+    {
+      "id": 14,
+      "imageUrl": "http://example.com/images/equipment14.jpg",
+      "equipmentName": "Server",
+      "purchaseDate": "2018-11-25",
+      "assetValue": "5000",
+      "serialNumber": "FGH852963"
+    },
+    {
+      "id": 15,
+      "imageUrl": "http://example.com/images/equipment15.jpg",
+      "equipmentName": "Switch",
+      "purchaseDate": "2020-06-15",
+      "assetValue": "300",
+      "serialNumber": "JKL963258"
+    },
+    {
+      "id": 16,
+      "imageUrl": "http://example.com/images/equipment16.jpg",
+      "equipmentName": "Modem",
+      "purchaseDate": "2021-08-18",
+      "assetValue": "100",
+      "serialNumber": "MNB741852"
+    },
+    {
+      "id": 17,
+      "imageUrl": "http://example.com/images/equipment17.jpg",
+      "equipmentName": "NAS",
+      "purchaseDate": "2019-09-10",
+      "assetValue": "800",
+      "serialNumber": "OIU963147"
+    },
+    {
+      "id": 18,
+      "imageUrl": "http://example.com/images/equipment18.jpg",
+      "equipmentName": "UPS",
+      "purchaseDate": "2018-12-22",
+      "assetValue": "200",
+      "serialNumber": "PLM258369"
+    },
+    {
+      "id": 19,
+      "imageUrl": "http://example.com/images/equipment19.jpg",
+      "equipmentName": "Speaker",
+      "purchaseDate": "2022-02-11",
+      "assetValue": "150",
+      "serialNumber": "QAZ741852"
+    },
+    {
+      "id": 20,
+      "imageUrl": "http://example.com/images/equipment20.jpg",
+      "equipmentName": "Microphone",
+      "purchaseDate": "2021-03-20",
+      "assetValue": "100",
+      "serialNumber": "WSX963258"
+    }
+  ]
+}
