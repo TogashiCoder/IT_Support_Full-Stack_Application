@@ -6,6 +6,7 @@ import com.baseapp.it_support_api.service.TicketService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class TicketController {
 
 
 
-    @PostMapping
+    @PostMapping("/user")
     public ResponseEntity<TicketDTO> createTicket(@RequestBody TicketDTO ticketDTO) {
     TicketDTO createdTicket = ticketService.createTicket(ticketDTO);
     return ResponseEntity.status(HttpStatus.CREATED).body(createdTicket);
@@ -54,8 +55,8 @@ public class TicketController {
 
 
 
-
-    @PutMapping("/{id}/technician/{technicianId}")
+    @PutMapping("/admin/{id}/technician/{technicianId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<TicketDTO> linkTicketWithTechnician(@PathVariable Long id, @PathVariable Long technicianId) {
         TicketDTO linkedTicket = ticketService.linkTicketWithTechnician(id, technicianId);
         return ResponseEntity.ok(linkedTicket);
@@ -67,6 +68,7 @@ public class TicketController {
         List<TicketDTO> tickets = ticketService.getAllTecketByUserId(userId);
         return ResponseEntity.ok(tickets);
     }
+
 
 
     @GetMapping("/technicians/{technicianId}")

@@ -18,7 +18,6 @@ public class Fault {
     @GeneratedValue
     private Long id;
     private String description;
-    private LocalDate SignalDate;
     @OneToMany(mappedBy = "fault",cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 }

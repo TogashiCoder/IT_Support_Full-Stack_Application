@@ -1,5 +1,7 @@
 package com.baseapp.it_support_api.config;
 
+import com.baseapp.it_support_api.filter.JwtAuthenticationFilter;
+import com.baseapp.it_support_api.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +29,23 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SecurityConfig {
 
 
+    private final PersonService personService;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
+
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        return http
+//                //1
+//                .csrf(AbstractHttpConfigurer::disable)
+//                //2
+//                .authorizeHttpRequests(
+//                        requset->requset.anyRequest().permitAll()
+//                )
+//                .build();
+//    }
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -35,10 +54,42 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 //2
                 .authorizeHttpRequests(
-                        requset->requset.anyRequest().permitAll()
+                        req->req.requestMatchers("/login/**","register/Admin/**")
+                                .permitAll()
+                                .requestMatchers("/api/equipment/admin/**","/api/faults/admin/**","/api/tickets/admin/**","register/user/**","register/Technician/**",
+                                                    "/api/technicians/admin","/api/users/admin").hasAuthority("ADMIN")
+//                                .requestMatchers("/api/tickets/user").hasAuthority("USER")
+                                .anyRequest()
+                                .authenticated()
                 )
+                //3
+                .userDetailsService(personService)
+                //4
+                .exceptionHandling(e->e.accessDeniedHandler(customAccessDeniedHandler)
+                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                )
+                //5
+                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                //6
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                //7
+                .exceptionHandling(
+                        e->e.accessDeniedHandler(
+                                        (request, response, accessDeniedException)->response.setStatus(403)
+                                )
+                                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+                //8
+//                .logout(l->l
+//                        .logoutUrl("/logout")
+//                        .addLogoutHandler(customLogoutHandler)
+//                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()
+//                        ))
                 .build();
+
     }
+
+
+
 
 
 
@@ -54,20 +105,7 @@ public class SecurityConfig {
     }
 
 
-    @Bean
-    public WebMvcConfigurer corsConfig() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200")
-                        .allowedMethods(HttpMethod.GET.name(),
-                                HttpMethod.POST.name(),
-                                HttpMethod.DELETE.name())
-                        .allowedHeaders(HttpHeaders.CONTENT_TYPE,
-                                HttpHeaders.AUTHORIZATION);
-            }
-        };
-    }
+
+
 
 }

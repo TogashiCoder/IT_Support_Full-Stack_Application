@@ -1,12 +1,13 @@
 Spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/it_support
+    #url: jdbc:postgresql://postgresS:5432/it_support
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:

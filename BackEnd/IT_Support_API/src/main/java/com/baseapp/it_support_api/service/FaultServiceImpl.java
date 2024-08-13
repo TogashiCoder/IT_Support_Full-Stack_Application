@@ -37,7 +37,6 @@ public class FaultServiceImpl {
 
     public FaultDTO createFault(FaultDTO faultDTO) {
         Fault fault = faultMapper.toEntity(faultDTO);
-        fault.setSignalDate(LocalDate.now());
         Fault savedFault = faultRepository.save(fault);
         return faultMapper.toDTO(savedFault);
     }
@@ -47,7 +46,6 @@ public class FaultServiceImpl {
         if (optionalFault.isPresent()) {
             Fault fault = optionalFault.get();
             fault.setDescription(faultDTO.getDescription());
-            fault.setSignalDate(faultDTO.getSignalDate());
             Fault updatedFault = faultRepository.save(fault);
             return faultMapper.toDTO(updatedFault);
         } else {
