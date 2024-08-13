@@ -1,6 +1,6 @@
 export interface Equipment {
   id:number
-  imageUrl: string
+   imageUrl: string
   equipmentName: string
   purchaseDate: string
   assetValue: string

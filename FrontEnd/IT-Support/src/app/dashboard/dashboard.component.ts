@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,15 +11,15 @@ export class DashboardComponent implements OnInit{
   sidebarOpen = true;
   userRole!: string;
 
+  constructor(private authService: AuthService) {}
+
   ngOnInit() {
-    // Get the user role from your authentication service
-    this.userRole = 'admin'; // This should be dynamic based on the logged-in user
+    this.userRole = this.authService.getUserRole();
+    console.log(this.userRole);
   }
 
-
-  toggleSidebar(){
-    this.sidebarOpen = this.sidebarOpen? false:true
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
   }
-
 
 }

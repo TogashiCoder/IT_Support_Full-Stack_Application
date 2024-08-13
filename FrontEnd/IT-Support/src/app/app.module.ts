@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
+import { AuthService } from './services/auth.service';
+import { LogoutComponent } from './logout/logout.component';
 
 // Angular Material Modules
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +21,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { JwtModule } from '@auth0/angular-jwt';
+
+
+//interceptor
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptor/AuthInterceptor.interceptor';
+
 
 
 
@@ -27,6 +36,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
+    LogoutComponent
   ],
   imports: [
     RouterModule,
@@ -43,9 +53,17 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('jwt_token'),
+        allowedDomains: ['http://localhost:8080/login'],
+      }}),
+
   ],
-  providers: [],
+  providers: [AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

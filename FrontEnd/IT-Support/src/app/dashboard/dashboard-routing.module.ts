@@ -20,6 +20,9 @@ const routes: Routes = [
       { path: 'fault',
          loadChildren: () => import('./fault/fault.module').then(m => m.FaultModule)
       },
+      { path: 'ticket',
+         loadChildren: () => import('./ticket/ticket.module').then(m => m.TicketModule)
+      },
     ]
   },
 ];
