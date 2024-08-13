@@ -1,5 +1,7 @@
 export interface Ticket {
-  id: number
+  id?: number
+  creationDate?: string
+  status:string
   userId: number
   faultId :number
   equipmentId : number

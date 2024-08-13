@@ -9,12 +9,29 @@ import { Ticket } from '../models/ticket.model';
   providedIn: 'root'
 })
 export class TicketService {
-  
-  private apiUrl = 'your-api-url/tickets';
+
+  private apiUrl = 'http://localhost:8080/api/tickets/users';
 
   constructor(private http: HttpClient) {}
 
-  getUserTickets(userId: number): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(`${this.apiUrl}/user/${userId}`);
+
+
+
+
+  // create New Ticket
+  createNewTicket(ticket: Ticket): Observable<Ticket> {
+    return this.http.post<Ticket>(this.apiUrl, ticket);
   }
+
+    // Get all Tickets by User ID
+  getAllTecketByUserId(userId: number): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.apiUrl}/users/${userId}`);
+  }
+
+  // Get all Tickets by Technician ID
+  getAllTicketsByTechnicianId(technicianId: number): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.apiUrl}/technicians/${technicianId}`);
+  }
+
+
 }

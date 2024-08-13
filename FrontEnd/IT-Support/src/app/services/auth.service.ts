@@ -73,4 +73,17 @@ export class AuthService {
     return '';
   }
 
+
+
+  //  get the id from the JWT token
+  getId(): number | null {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken.id;
+    }
+    return null;
+  }
+
+
 }
