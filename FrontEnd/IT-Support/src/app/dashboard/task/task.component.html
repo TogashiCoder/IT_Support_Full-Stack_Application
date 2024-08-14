@@ -1,0 +1,48 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="creationDate">
+    <th mat-header-cell *matHeaderCellDef> Creation Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.creationDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-select
+        [(value)]="element.status"
+        (selectionChange)="updateStatus(element, $event.value)"
+        [disabled]="isStatusDisabled(element.status)">
+        <mat-option *ngFor="let status of statuses" [value]="status">
+          {{status}}
+        </mat-option>
+      </mat-select>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef> User </th>
+    <td mat-cell *matCellDef="let element"> {{element.user.username}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fault">
+    <th mat-header-cell *matHeaderCellDef> Fault </th>
+    <td mat-cell *matCellDef="let element"> {{element.fault.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="equipment">
+    <th mat-header-cell *matHeaderCellDef> Equipment </th>
+    <td mat-cell *matCellDef="let element"> {{element.equipment.equipmentName}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

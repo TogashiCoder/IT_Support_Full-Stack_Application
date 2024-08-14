@@ -2,6 +2,7 @@ package com.baseapp.it_support_api.controller;
 
 import com.baseapp.it_support_api.model.DTO.TechnicianDTO;
 import com.baseapp.it_support_api.service.TechnicianService;
+import com.baseapp.it_support_api.service.TechnicianServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TechnicianController {
 
-    private final TechnicianService technicianService;
+    private final TechnicianServiceImpl technicianService;
 
     @GetMapping
     public ResponseEntity<List<TechnicianDTO>> getAllTechnicians() {

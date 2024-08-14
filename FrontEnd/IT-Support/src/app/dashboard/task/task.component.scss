@@ -1,0 +1,77 @@
+/* task.component.scss */
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #333;
+    padding: 12px 16px;
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #555;
+  }
+
+  tr:hover {
+    background-color: #fafafa;
+  }
+
+  /* Adding shadow and border-radius for a card-like appearance */
+  &.mat-elevation-z8 {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    th,
+    td {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+
+    mat-select {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    th,
+    td {
+      display: block;
+      text-align: right;
+      padding: 8px 0;
+    }
+
+    th::before,
+    td::before {
+      content: attr(data-column);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    td {
+      text-align: left;
+      padding: 8px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    tr {
+      display: block;
+      margin-bottom: 12px;
+    }
+  }
+}

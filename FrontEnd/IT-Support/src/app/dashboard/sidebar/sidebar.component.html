@@ -1,18 +1,26 @@
 <mat-nav-list>
   <div *ngIf="userRole === 'ADMIN'">
-    <a mat-list-item routerLink="/dashboard/user">Manage Users</a>
-    <a mat-list-item routerLink="/dashboard/technician">Manage Technician</a>
-    <a mat-list-item routerLink="/dashboard/equipment">Manage Equipment</a>
-    <a mat-list-item routerLink="/dashboard/fault">Manage Fault</a>
-    <a mat-list-item routerLink="/logout">Log out</a>
+    <a mat-list-item routerLink="/dashboard/user"><span class="material-icons" style="font-size: 16px; margin: 3px; color: lightseagreen;">group_add</span> Manage Users</a>
+    <a mat-list-item routerLink="/dashboard/technician"><span class="material-icons" style="font-size: 16px; margin: 3px; color: lightblue;">
+      precision_manufacturing
+      </span> Manage Technician</a>
+    <a mat-list-item routerLink="/dashboard/equipment" ><span class="material-icons"  style="font-size: 16px; margin: 3px; color: lightpink;">
+      devices_other
+      </span> Manage Equipment</a>
+    <a mat-list-item routerLink="/dashboard/fault"><span class="material-icons"  style="font-size: 16px; margin: 3px; color: lightcoral;">warning</span> Manage Fault</a>
+      <a mat-list-item routerLink="/dashboard/link"><span class="material-icons" style="font-size: 16px; margin: 3px; color: tomato;"> link</span>Assignment</a>
+    <a mat-list-item routerLink="/logout"><span class="material-icons" style="font-size: 16px; margin: 3px; color: tomato;"> logout</span>Log out</a>
+
+
   </div>
   <div *ngIf="userRole === 'USER'">
-    <a mat-list-item routerLink="/dashboard/ticket/user">My Tickets</a>
-    <a mat-list-item routerLink="/logout">Log out</a>
+    <a mat-list-item routerLink="/dashboard/ticket/tickets"><span class="material-icons" style="font-size: small; margin: 3px; color: lightgreen;">local_activity</span> My Tickets</a>
+    <a mat-list-item routerLink="/logout"><span class="material-icons" style="font-size: small; margin: 3px; color: tomato;"> logout</span>Log out</a>
+
   </div>
   <div *ngIf="userRole === 'TECHNICIAN'">
-    <a mat-list-item routerLink="/dashboard/tickets">All Tasks</a>
-    <a mat-list-item routerLink="/logout">Log out</a>
+    <a mat-list-item routerLink="/task"><span class="material-icons" style="font-size:16px; margin: 3px; color: lightgreen;">add_task</span> Tasks</a>
+    <a mat-list-item routerLink="/logout"><span class="material-icons" style="font-size: 16px; margin: 3px; color: tomato;"> logout</span>Log out</a>
   </div>
 </mat-nav-list>
 

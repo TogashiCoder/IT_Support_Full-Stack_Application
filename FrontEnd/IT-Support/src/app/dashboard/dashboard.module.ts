@@ -17,12 +17,20 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { LinkComponent } from './link/link.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TaskComponent } from './task/task.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     SidebarComponent,
+    LinkComponent,
+    TaskComponent,
 
   ],
   imports: [
@@ -39,6 +47,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatSidenavModule,
     MatListModule,
     FormsModule,
+    MatTableModule,
+    MatSelectModule,
+    MatCheckboxModule
 
   ]
 })

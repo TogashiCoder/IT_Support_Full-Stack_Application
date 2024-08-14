@@ -1,0 +1,137 @@
+.table-actions {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mat-raised-button {
+  height: 45px;
+  font-size: 16px;
+  // margin-right: 40px;
+  // margin-top: 50px;
+
+  .mat-icon {
+    margin-right: 8px;
+  }
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.mat-elevation-z8 {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-table {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.mat-header-row {
+  background-color: #f5f5f5;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 16px;
+}
+
+.mat-header-cell {
+  color: #333333;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.mat-cell {
+  color: #666666;
+  font-size: 14px;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.mat-row:hover {
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+.mat-column-action {
+  width: 150px;
+  text-align: center;
+}
+
+.mat-button {
+  min-width: 64px;
+  line-height: 36px;
+  padding: 0 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 4px;
+}
+
+.mat-button.mat-primary {
+  background-color: #1976d2;
+  color: white;
+}
+
+.mat-button.mat-warn {
+  background-color: #f44336;
+  color: white;
+}
+
+.mat-paginator {
+  background-color: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+}
+
+@media screen and (max-width: 600px) {
+  .table-actions {
+    justify-content: center;
+  }
+
+  .mat-raised-button {
+    width: 100%;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 16px;
+  }
+
+  .mat-cell {
+    width: 100%;
+    text-align: left;
+    padding: 8px 0;
+
+    &:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-right: 8px;
+    }
+  }
+
+  .mat-column-action {
+    width: 100%;
+    text-align: left;
+    margin-top: 8px;
+  }
+
+  .mat-button {
+    width: 100%;
+    margin: 4px 0;
+  }
+}

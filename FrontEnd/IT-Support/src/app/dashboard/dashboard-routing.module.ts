@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { LinkComponent } from './link/link.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,9 @@ const routes: Routes = [
       {
         path: 'equipment',
         loadChildren: () => import('./equipment/equipment.module').then(m => m.EquipmentModule)
+      },
+      {
+        path:'link',component:LinkComponent
       },
       { path: 'user',
          loadChildren: () => import('./user/user.module').then(m => m.UserModule)

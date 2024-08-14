@@ -1,7 +1,7 @@
 import { Component ,OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Technician } from 'src/app/models/technician.model';
+import { Technician ,TechnicianCreate } from 'src/app/models/technician.model';
 import { TechnicianService } from 'src/app/services/technician.service';
 
 @Component({
@@ -41,10 +41,9 @@ export class AddComponent implements OnInit {
   saveUser() {
     if (this.userForm.valid) {
       const userData = this.userForm.value;
-      // Handle user data saving here
       console.log('User Data:', userData);
       this.technicianService.createNewTechnician(userData).subscribe(
-        (createdTechnician: Technician) => {
+        (createdTechnician: TechnicianCreate) => {
           console.log('Technician created:', createdTechnician);
           this.router.navigate(['../'], { relativeTo: this.activerouter });
         },

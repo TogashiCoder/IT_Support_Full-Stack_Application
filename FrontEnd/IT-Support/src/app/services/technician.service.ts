@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Technician } from '../models/technician.model';
+import { Technician ,TechnicianCreate} from '../models/technician.model';
 
 
 @Injectable({
@@ -17,8 +17,9 @@ export class TechnicianService {
 
 
 // create New Technician
-createNewTechnician(technician: Technician): Observable<Technician> {
-  return this.http.post<Technician>(this.apiUrl, technician);
+
+createNewTechnician(technician: TechnicianCreate): Observable<TechnicianCreate> {
+  return this.http.post<TechnicianCreate>(this.apiUrl +"/admin", technician);
 }
 
 

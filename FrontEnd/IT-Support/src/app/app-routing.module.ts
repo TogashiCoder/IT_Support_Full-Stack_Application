@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from 'src/app/login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './guiard/AuthGuard ';
+import { TaskComponent } from './dashboard/task/task.component';
 
 
 // const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'logout', component: LogoutComponent }
+  { path: 'logout', component: LogoutComponent },
+  {path:'task',component:TaskComponent}
 ];
 
 @NgModule({

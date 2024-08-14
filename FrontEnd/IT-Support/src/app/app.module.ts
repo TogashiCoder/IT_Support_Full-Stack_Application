@@ -22,6 +22,9 @@ import {MatListModule} from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 //interceptor
@@ -36,7 +39,8 @@ import { AuthInterceptor } from './interceptor/AuthInterceptor.interceptor';
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    LogoutComponent
+    LogoutComponent,
+
   ],
   imports: [
     RouterModule,
@@ -50,8 +54,11 @@ import { AuthInterceptor } from './interceptor/AuthInterceptor.interceptor';
     MatButtonModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatTableModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatSelectModule,
+    MatTableModule,
     MatListModule,
     FormsModule,
     JwtModule.forRoot({

@@ -2,6 +2,7 @@ package com.baseapp.it_support_api.controller;
 
 import com.baseapp.it_support_api.model.DTO.UserDTO;
 import com.baseapp.it_support_api.service.UserService;
+import com.baseapp.it_support_api.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {

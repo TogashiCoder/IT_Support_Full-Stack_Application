@@ -5,3 +5,10 @@ export interface Technician {
   password: string
   role: string
 }
+
+export interface TechnicianCreate {
+  username: string;
+  email: string;
+  password: string;
+  role: string;
+}

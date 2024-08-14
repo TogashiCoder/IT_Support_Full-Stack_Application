@@ -1,0 +1,73 @@
+/* Add this to your component's CSS file */
+
+.mat-elevation-z8 {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2),
+              0 8px 10px 1px rgba(0, 0, 0, .14),
+              0 3px 14px 2px rgba(0, 0, 0, .12);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  background-color: #f5f5f5;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  padding: 16px;
+  font-weight: bold;
+  color: #333;
+  background-color: #e0e0e0;
+  border-bottom: 2px solid #ccc;
+}
+
+td.mat-cell {
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+tr.mat-row {
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+tr.mat-row:hover {
+  background-color: #f0f0f0;
+}
+
+.mat-column-id {
+  width: 5%;
+}
+
+.mat-column-creationDate {
+  width: 10%;
+}
+
+.mat-column-status {
+  width: 10%;
+}
+
+.mat-column-description {
+  width: 20%;
+}
+
+.mat-column-user,
+.mat-column-fault,
+.mat-column-equipment,
+.mat-column-technician {
+  width: 15%;
+}
+
+mat-select {
+  width: 100%;
+}
+
+.status-created { color: #2196F3; }
+.status-assigned { color: #FF9800; }
+.status-in-progress { color: #4CAF50; }
+.status-resolved { color: #9C27B0; }
+.status-closed { color: #607D8B; }
+.status-closed {
+  color: #607D8B; /* Grey */
+}

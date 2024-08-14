@@ -35,7 +35,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AddComponent,
     ViewComponent,
     EditComponent,
-    DeleteComponent
+    DeleteComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,31 @@
+<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+  <h2>Create New Ticket</h2>
+
+  <mat-form-field>
+    <mat-label>Equipment</mat-label>
+    <mat-select formControlName="equipmentId">
+      <mat-option *ngFor="let equipment of equipments" [value]="equipment.id">
+        {{equipment.equipmentName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Fault</mat-label>
+    <input type="text" matInput formControlName="faultId" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFaultFn">
+      <mat-option *ngFor="let fault of filteredFaults | async" [value]="fault">
+        {{fault.description}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!ticketForm.valid">
+    Create Ticket
+  </button>
+</form>

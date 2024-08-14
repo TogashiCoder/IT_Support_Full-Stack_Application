@@ -3,6 +3,7 @@ package com.baseapp.it_support_api.controller;
 import com.baseapp.it_support_api.exception.EquipmentNotFoundException;
 import com.baseapp.it_support_api.model.DTO.EquipmentDTO;
 import com.baseapp.it_support_api.service.EquipmentService;
+import com.baseapp.it_support_api.service.EquipmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import java.util.List;
 public class EquipmentController {
 
     @Autowired
-    private EquipmentService equipmentService;
+    private EquipmentServiceImpl equipmentService;
 
     @GetMapping
     public ResponseEntity<List<EquipmentDTO>> getAllEquipment() {

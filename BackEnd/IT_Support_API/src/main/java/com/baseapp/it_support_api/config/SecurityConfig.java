@@ -33,60 +33,60 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http
-//                //1
-//                .csrf(AbstractHttpConfigurer::disable)
-//                //2
-//                .authorizeHttpRequests(
-//                        requset->requset.anyRequest().permitAll()
-//                )
-//                .build();
-//    }
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         return http
                 //1
                 .csrf(AbstractHttpConfigurer::disable)
                 //2
                 .authorizeHttpRequests(
-                        req->req.requestMatchers("/login/**","register/Admin/**")
-                                .permitAll()
-                                .requestMatchers("/api/equipment/admin/**","/api/faults/admin/**","/api/tickets/admin/**","register/user/**","register/Technician/**",
-                                                    "/api/technicians/admin","/api/users/admin").hasAuthority("ADMIN")
-//                                .requestMatchers("/api/tickets/user").hasAuthority("USER")
-                                .anyRequest()
-                                .authenticated()
+                        requset->requset.anyRequest().permitAll()
                 )
-                //3
-                .userDetailsService(personService)
-                //4
-                .exceptionHandling(e->e.accessDeniedHandler(customAccessDeniedHandler)
-                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-                )
-                //5
-                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                //6
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                //7
-                .exceptionHandling(
-                        e->e.accessDeniedHandler(
-                                        (request, response, accessDeniedException)->response.setStatus(403)
-                                )
-                                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
-                //8
-//                .logout(l->l
-//                        .logoutUrl("/logout")
-//                        .addLogoutHandler(customLogoutHandler)
-//                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()
-//                        ))
                 .build();
-
     }
+
+
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//
+//        return http
+//                //1
+//                .csrf(AbstractHttpConfigurer::disable)
+//                //2
+//                .authorizeHttpRequests(
+//                        req->req.requestMatchers("/login/**","register/Admin/**")
+//                                .permitAll()
+//                                .requestMatchers("/api/equipment/admin/**","/api/faults/admin/**","/api/tickets/admin/**","register/user/**","register/Technician/**",
+//                                                    "/api/technicians/admin","/api/users/admin").hasAuthority("ADMIN")
+////                                .requestMatchers("/api/tickets/user").hasAuthority("USER")
+//                                .anyRequest()
+//                                .authenticated()
+//                )
+//                //3
+//                .userDetailsService(personService)
+//                //4
+//                .exceptionHandling(e->e.accessDeniedHandler(customAccessDeniedHandler)
+//                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+//                )
+//                //5
+//                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                //6
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+//                //7
+//                .exceptionHandling(
+//                        e->e.accessDeniedHandler(
+//                                        (request, response, accessDeniedException)->response.setStatus(403)
+//                                )
+//                                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+//                //8
+////                .logout(l->l
+////                        .logoutUrl("/logout")
+////                        .addLogoutHandler(customLogoutHandler)
+////                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()
+////                        ))
+//                .build();
+//
+//    }
 
 
 

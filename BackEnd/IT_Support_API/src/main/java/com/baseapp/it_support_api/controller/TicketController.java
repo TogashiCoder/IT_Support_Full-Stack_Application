@@ -2,7 +2,9 @@ package com.baseapp.it_support_api.controller;
 
 import com.baseapp.it_support_api.exception.StatusNotFoundException;
 import com.baseapp.it_support_api.model.DTO.TicketDTO;
+import com.baseapp.it_support_api.model.DTO.TicketWithDetailsDTO;
 import com.baseapp.it_support_api.service.TicketService;
+import com.baseapp.it_support_api.service.TicketServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,11 +65,14 @@ public class TicketController {
     }
 
 
-    @GetMapping("/users/{userId}")
-    public ResponseEntity<List<TicketDTO>> getAllTicketsByUserId(@PathVariable Long userId) {
-        List<TicketDTO> tickets = ticketService.getAllTecketByUserId(userId);
-        return ResponseEntity.ok(tickets);
-    }
+//    @GetMapping("/users/{userId}")
+//    public ResponseEntity<List<TicketDTO>> getAllTicketsByUserId(@PathVariable Long userId) {
+//        List<TicketDTO> tickets = ticketService.getAllTecketByUserId(userId);
+//        return ResponseEntity.ok(tickets);
+//    }
+
+
+
 
 
 
@@ -92,4 +97,61 @@ public class TicketController {
                     .body("An unexpected error");
         }
     }
+
+
+
+    //extra
+    private final TicketServiceImpl ticketServiceIml;
+
+    @GetMapping("/details/{id}")
+    public ResponseEntity<TicketWithDetailsDTO> getTicketWithDetailsById(@PathVariable Long id) {
+        try {
+            TicketWithDetailsDTO ticketWithDetails = ticketServiceIml.getTicketWithDetailsById(id);
+            return ResponseEntity.ok(ticketWithDetails);
+        } catch (RuntimeException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+    }
+
+
+    //extra
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<TicketWithDetailsDTO>> GetAllTicketsByUserId(@PathVariable Long userId) {
+        List<TicketWithDetailsDTO> tickets = ticketServiceIml.getAllTicketsByUserId(userId);
+        return ResponseEntity.ok(tickets);
+    }
+
+
+
+    //extra
+    @GetMapping("/with-details")
+    public ResponseEntity<List<TicketWithDetailsDTO>> getAllTicketsWithDetails() {
+        List<TicketWithDetailsDTO> tickets = ticketServiceIml.getAllTicketsWithDetails();
+        return ResponseEntity.ok(tickets);
+    }
+
+
+    //extra
+    @GetMapping("/technicians/{technicianId}/details")
+    public ResponseEntity<List<TicketWithDetailsDTO>> getAllTicketsDataByTechnicianId(@PathVariable Long technicianId) {
+        List<TicketWithDetailsDTO> tickets = ticketService.getAllTicketsDataByTechnicianId(technicianId);
+        return ResponseEntity.ok(tickets);
+    }
+
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<TicketDTO> updateTicketStatus(@PathVariable Long id, @RequestParam String status) {
+        try {
+            TicketDTO updatedTicket = ticketService.updateTicketStatus(id, status);
+            return ResponseEntity.ok(updatedTicket);
+        } catch (StatusNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+
 }
